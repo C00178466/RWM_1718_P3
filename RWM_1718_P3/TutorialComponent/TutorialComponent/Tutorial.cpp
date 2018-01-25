@@ -39,12 +39,12 @@ bool Tutorial::Init(int width, int height)
 	coin = new Pickup(200, 100, m_renderer);
 
 	messageBox = new MessageBox(m_renderer, m_font);
-	messageBox->AddHint("This is the tutorial level for you here now", 5, 1);
-	messageBox->AddHint("Learn how to use the controls here", 5, 2);
-	messageBox->AddHint("Use D or RIGHT to move right", EventListener::Event::RIGHT, 3);
-	messageBox->AddHint("Use A or LEFT to move left", EventListener::Event::LEFT, 4);
-	messageBox->AddHint("Use S or Down to move down", EventListener::Event::DOWN, 5);
-	messageBox->AddHint("Use SPACE to Jump", EventListener::Event::JUMP, 6);
+	messageBox->AddHint("This is the tutorial level for you here now", 5);
+	messageBox->AddHint("Learn how to use the controls here", 5);
+	messageBox->AddHint("Use D or RIGHT to move right", EventListener::Event::RIGHT);
+	messageBox->AddHint("Use A or LEFT to move left", EventListener::Event::LEFT);
+	messageBox->AddHint("Use S or Down to move down", EventListener::Event::DOWN);
+	messageBox->AddHint("Use SPACE to Jump", EventListener::Event::JUMP);
 
 	return true;
 }

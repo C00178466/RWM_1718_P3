@@ -13,12 +13,11 @@ MessageBox::MessageBox(SDL_Renderer * renderer, TTF_Font * font) :
 	m_hintTimer = 0;
 }
 
-void MessageBox::AddHint(const char * mess, float time, int num)
+void MessageBox::AddHint(const char * mess, float time)
 {
-	triple<const char *, float, int> temp;
+	pair<const char*, float> temp;
 	temp.first = mess;
 	temp.second = time;
-	temp.third = num;
 
 	m_surface = TTF_RenderText_Blended_Wrapped(m_font, temp.first, { 0, 0, 0 }, 200);
 	m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
@@ -28,21 +27,14 @@ void MessageBox::AddHint(const char * mess, float time, int num)
 	m_textHints.push_back(temp);
 }
 
-void MessageBox::AddHint(const char * mess, EventListener::Event evt, int num)
+void MessageBox::AddHint(const char * mess, EventListener::Event evt)
 {
 	//add event to the list if its not there already
 	m_inputHandler.AddListener(evt, this);
 
-	/*triple<const char*, EventListener::Event, int> temp;
-	temp.first = mess;
-	temp.second = evt;
-	temp.third = num;*/
-
 	pair<const char*, EventListener::Event> temp;
 	temp.first = mess;
 	temp.second = evt;
-
-	//m_hintIndex = m_hintIndex + 1;
 
 	m_surface = TTF_RenderText_Blended_Wrapped(m_font, temp.first, { 0, 0, 0 }, 200);
 	m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
@@ -65,17 +57,31 @@ void MessageBox::Update(InputHandler input)
 		//timer for each hint
 		if (m_hintTimer > m_textHints.at(m_textIndex).second)
 		{
-			m_textIndex++;
+			if (m_textIndex < m_textHints.size() - 1)
+			{
+				m_textIndex++;
+			}
+			else
+			{
+				test = true;
+			}
+			
 			m_hintTimer = 0.0f;
 		}
 	}
 
-	else if (m_hintIndex < m_eventHints.size())
+	if (test)
 	{
-		if (input.CheckEvent() == m_eventHints.at(m_hintIndex).second) //check if event pressed matches the event given in the hint
+		if (m_hintIndex < m_eventHints.size())
 		{
-			m_hintIndex++;
-			cout << "Event Pressed" << endl;
+			if (input.CheckEvent() == m_eventHints.at(m_hintIndex).second) //check if event pressed matches the event given in the hint
+			{
+				if (m_hintIndex < m_eventHints.size() - 1)
+				{
+					m_hintIndex++;
+					cout << "Event Pressed" << endl;
+				}
+			}
 		}
 	}
 }
@@ -84,13 +90,17 @@ void MessageBox::Render()
 {
 	//check all elements in the text only hints
 	//then continue to the event driven hints
-	if (m_textIndex <= m_textHints.size())
+	
+	if (test)
 	{
-		SDL_RenderCopy(m_renderer, m_textMessages.at(m_textIndex), NULL, &m_textLoc);
+		if (m_hintIndex <= m_eventHints.size())
+		{
+			SDL_RenderCopy(m_renderer, m_eventMessages.at(m_hintIndex), NULL, &m_textLoc);
+		}
 	}
 
-	else if (m_hintIndex >= 0)
+	else if (m_textIndex <= m_textHints.size())
 	{
-		SDL_RenderCopy(m_renderer, m_eventMessages.at(m_hintIndex), NULL, &m_textLoc);
+		SDL_RenderCopy(m_renderer, m_textMessages.at(m_textIndex), NULL, &m_textLoc);
 	}
 }

@@ -36,16 +36,14 @@ public:
 	/// </summary>
 	/// <param name="mess">the message to be shown</param>
 	/// <param name="time">the amount of time to show message</param>
-	/// <param name="num">the order of the hint</param>
-	void AddHint(const char * mess, float time, int num);
+	void AddHint(const char * mess, float time);
 
 	/// <summary>
 	/// Adds an event driven hint to be shown (event needed to progress)
 	/// </summary>
 	/// <param name="mess">the message to be shown</param>
 	/// <param name="evt">specifies the event needed to progress to next hint</param>
-	/// <param name="num">the order of the hint</param>
-	void AddHint(const char * mess, EventListener::Event evt, int num);
+	void AddHint(const char * mess, EventListener::Event evt);
 
 	/// <summary>
 	/// Update Method
@@ -75,7 +73,8 @@ private:
 	InputHandler m_inputHandler;
 
 	//Text Based Hints
-	vector<triple<const char *, float, int>> m_textHints;
+	//vector<triple<const char *, float, int>> m_textHints;
+	vector<pair<const char *, float>> m_textHints;
 	int m_textIndex;
 	float m_hintTimer;
 
