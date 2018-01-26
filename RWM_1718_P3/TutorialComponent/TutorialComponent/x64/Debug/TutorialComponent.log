@@ -1,6 +1,9 @@
 ﻿  Tutorial.cpp
+  Player.cpp
+  Pickup.cpp
   MessageBox.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
   main.cpp
-  TutorialComponent.vcxproj -> C:\Users\Jason\Desktop\RWM\RWM_1718_P3\RWM_1718_P3\TutorialComponent\x64\Debug\TutorialComponent.exe
+  InputHandler.cpp
+  Generating Code...
+c:\users\gameuser\documents\rwm p3\rwm_1718_p3\rwm_1718_p3\tutorialcomponent\tutorialcomponent\inputhandler.cpp(51): warning C4715: 'InputHandler::CheckEvent': not all control paths return a value
+  TutorialComponent.vcxproj -> C:\Users\gameuser\Documents\RWM P3\RWM_1718_P3\RWM_1718_P3\TutorialComponent\x64\Debug\TutorialComponent.lib

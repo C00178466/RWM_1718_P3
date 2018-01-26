@@ -3,7 +3,6 @@
 #include "SDL_image.h"
 #include "InputHandler.h"
 #include "Player.h"
-#include "Pickup.h"
 #include "MessageBox.h"
 #include <vector>
 
@@ -33,6 +32,5 @@ private:
 	InputHandler m_input;
 
 	Player * player;
-	Pickup * coin;
 	MessageBox * messageBox;
 };

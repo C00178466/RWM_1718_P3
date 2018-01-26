@@ -93,5 +93,5 @@ private:
 	int m_h = 50;
 
 
-	bool test = false;
+	bool m_textHintOver = false;
 };

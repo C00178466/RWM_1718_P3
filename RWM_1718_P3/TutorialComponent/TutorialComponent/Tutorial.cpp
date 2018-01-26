@@ -36,7 +36,6 @@ bool Tutorial::Init(int width, int height)
 	m_input.AddListener(EventListener::Event::JUMP, this);
 
 	player = new Player(m_renderer);
-	coin = new Pickup(200, 100, m_renderer);
 
 	messageBox = new MessageBox(m_renderer, m_font);
 	messageBox->AddHint("This is the tutorial level for you here now", 5);
@@ -56,7 +55,6 @@ void Tutorial::Update()
 		m_input.CheckInput(gameRunning);
 
 		player->Update();
-		coin->Update();
 		messageBox->Update(m_input);
 
 		Render();
@@ -70,7 +68,6 @@ void Tutorial::Render()
 
 	//draw here
 	player->Render(m_renderer);
-	coin->Render(m_renderer);
 	messageBox->Render();
 
 	SDL_RenderPresent(m_renderer);

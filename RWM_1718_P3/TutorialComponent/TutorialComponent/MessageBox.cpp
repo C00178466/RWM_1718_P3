@@ -63,14 +63,14 @@ void MessageBox::Update(InputHandler input)
 			}
 			else
 			{
-				test = true;
+				m_textHintOver = true;
 			}
 			
 			m_hintTimer = 0.0f;
 		}
 	}
 
-	if (test)
+	if (m_textHintOver)
 	{
 		if (m_hintIndex < m_eventHints.size())
 		{
@@ -91,7 +91,7 @@ void MessageBox::Render()
 	//check all elements in the text only hints
 	//then continue to the event driven hints
 	
-	if (test)
+	if (m_textHintOver)
 	{
 		if (m_hintIndex <= m_eventHints.size())
 		{
